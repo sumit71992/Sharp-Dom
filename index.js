@@ -9,7 +9,6 @@ ul.addEventListener('click', removeItem);
 function addItem(e){
     e.preventDefault();
     let list= document.getElementById('item').value;
-    console.log(list)
     let li = document.createElement("li");
     li.className="list-group-item";
     li.appendChild(document.createTextNode(list));
