@@ -39,16 +39,7 @@ function removeItem(e){
 function filterItem(e){
     let search = e.target.value.toLowerCase();
     let liItems = ul.getElementsByTagName('li');
-    let desItems= ul.getElementsByTagName('span');
     Array.from(liItems).forEach((item)=>{
-        let itemName=item.firstChild.textContent.toLowerCase();
-        if(itemName.indexOf(search)!=-1){
-            item.style.display='block';
-        }else{
-            item.style.display='none';
-        }
-    })
-    Array.from(desItems).forEach((item)=>{
         let itemName=item.firstChild.textContent.toLowerCase();
         if(itemName.indexOf(search)!=-1){
             item.style.display='block';
