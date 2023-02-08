@@ -3,6 +3,7 @@ document.querySelector('form.formdata').addEventListener('submit', function (e) 
     let x = document.querySelector('form.formdata').elements;
     var t = document.getElementById("time");
     var text = t.options[t.selectedIndex].text;
+    let email = x['email'].value;
    let user_obj={
     name: x['name'].value,
     email: x['email'].value,
@@ -14,7 +15,7 @@ document.querySelector('form.formdata').addEventListener('submit', function (e) 
     // localStorage.setItem('email',x['email'].value);
     // localStorage.setItem('phone',x['phone'].value);
     // localStorage.setItem('Time For Call',x['date'].value+" "+text);
-    localStorage.setItem('user',user);
+    localStorage.setItem(email,user);
     let user_object = JSON.parse(localStorage.getItem('user'))
     console.log(user_object)
 });
