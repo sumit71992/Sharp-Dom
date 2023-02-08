@@ -1,3 +1,4 @@
+let di = document.querySelector(".local");
 document
   .querySelector("form.formdata")
   .addEventListener("submit", function (e) {
@@ -14,20 +15,17 @@ document
     };
     let user = JSON.stringify(user_obj);
     localStorage.setItem(email, user);
-    // localStorage.setItem('user',x['name'].value);
-    // localStorage.setItem('email',x['email'].value);
-    // localStorage.setItem('phone',x['phone'].value);
-    // localStorage.setItem('Time For Call',x['date'].value+" "+text);
+    window.location.reload();
   });
 
-let di = document.querySelector(".local");
 let keys = Object.keys(localStorage);
 i = keys.length;
 while (i--) {
   let div = document.createElement("div");
-  div.className = "d-flex justify-content-between";
+  div.className = "d-flex justify-content-between gap-2";
   let p = document.createElement("p");
-  div.setAttribute('id',JSON.parse(localStorage.getItem(keys[i])).email);
+  div.setAttribute("id", JSON.parse(localStorage.getItem(keys[i])).email);
+
   p.appendChild(
     document.createTextNode(
       JSON.parse(localStorage.getItem(keys[i])).name +
@@ -42,8 +40,12 @@ while (i--) {
   let btn = document.createElement("button");
   btn.className = "del_button";
   btn.appendChild(document.createTextNode("Delete"));
+  let btn1 = document.createElement("button");
+  btn1.className = "edit_btn";
+  btn1.appendChild(document.createTextNode("Edit"));
   div.appendChild(p);
   div.appendChild(btn);
+  div.appendChild(btn1);
   di.appendChild(div);
 }
 //delete local storage
@@ -51,8 +53,24 @@ let local_data = document.querySelector(".local");
 local_data.addEventListener("click", delete_data);
 function delete_data(e) {
   if (e.target.classList.contains("del_button")) {
-    console.log(e.target.parentElement.id)
     localStorage.removeItem(e.target.parentElement.id);
     di.removeChild(e.target.parentElement);
+  }
+}
+//edit local storage data
+let local = document.querySelector(".local");
+let names = document.getElementById('name');
+let emails = document.getElementById('email');
+let phones = document.getElementById('phone');
+local.addEventListener("click", edit_data);
+function edit_data(e) {
+  if (e.target.classList.contains("edit_btn")) {
+    let edit=e.target.parentElement.id;
+    names.value=JSON.parse(localStorage.getItem(edit)).name;
+    emails.value=JSON.parse(localStorage.getItem(edit)).email;
+    phones.value=JSON.parse(localStorage.getItem(edit)).phone;
+    localStorage.removeItem(edit);
+    di.removeChild(e.target.parentElement);
+
   }
 }
