@@ -22,7 +22,7 @@ function createupdateLastUserActivityTime() {
 function deleteBlog(){
     return new Promise((res,rej)=>{
        setTimeout(()=>{
-           if(blogs.length>0){
+           if(posts.length>0){
                let del=posts.pop();
                res(del);
            }else{
