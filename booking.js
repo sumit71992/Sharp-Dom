@@ -1,5 +1,5 @@
 let di = document.querySelector(".local");
-let url = "https://crudcrud.com/api/4cbed566c0c5499695434f9780572a7c/appoinmentData";
+let url = "https://crudcrud.com/api/2248be25ea2549f0891df3aebbae310e/appoinmentData";
 document
   .querySelector("form.formdata")
   .addEventListener("submit", function (e) {
@@ -110,7 +110,13 @@ local_data.addEventListener("click", delete_data);
 function delete_data(e) {
   if (e.target.classList.contains("del_button")) {
     axios.delete(url+"/"+e.target.parentElement.id)
-    di.removeChild(e.target.parentElement);
+    .then((res)=>{
+      console.log("res",res);
+      console.log(e.target.parentElement)
+      di.removeChild(e.target.parentElement);
+    })
+    .catch((err)=>console.log(err));
+    
   }
 }
 //edit local storage data
