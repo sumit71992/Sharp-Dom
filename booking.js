@@ -44,7 +44,7 @@ document
 
       }).catch((err) => console.log(err))
   });
-//window loaded
+//Fetch all data on window loaded
 window.addEventListener("DOMContentLoaded", () => {
   axios.get(url)
     .then((data) => {
@@ -109,7 +109,7 @@ let local_data = document.querySelector(".local");
 local_data.addEventListener("click", delete_data);
 function delete_data(e) {
   if (e.target.classList.contains("del_button")) {
-    localStorage.removeItem(e.target.parentElement.id);
+    axios.delete(url+"/"+e.target.parentElement.id)
     di.removeChild(e.target.parentElement);
   }
 }
