@@ -1,4 +1,5 @@
 let di = document.querySelector(".local");
+let url = "https://crudcrud.com/api/4cbed566c0c5499695434f9780572a7c/appoinmentData";
 document
   .querySelector("form.formdata")
   .addEventListener("submit", function (e) {
@@ -12,38 +13,68 @@ document
       email: x["email"].value,
       phone: x["phone"].value,
     };
-    
+
     // localStorage.setItem(email, user);
-    axios.post("https://crudcrud.com/api/4cbed566c0c5499695434f9780572a7c/appoinmentData",user_obj)
-    .then((data)=>{
-      let div = document.createElement("div");
-  div.className = "d-flex justify-content-between gap-2";
-  let p = document.createElement("p");
-  div.setAttribute("id", data.data._id);
-  p.appendChild(
-    document.createTextNode(data.data.name +
-        " " +
-        data.data.email +
-        " " +
-        data.data.phone
-    )
-  );
-  let btn = document.createElement("button");
-  btn.className = "del_button";
-  btn.appendChild(document.createTextNode("Delete"));
-  let btn1 = document.createElement("button");
-  btn1.className = "edit_btn";
-  btn1.appendChild(document.createTextNode("Edit"));
-  div.appendChild(p);
-  div.appendChild(btn);
-  div.appendChild(btn1);
-  di.appendChild(div);
-     
-      
-      
-    }).catch((err)=>console.log(err))
-    // window.location.reload();
+    axios.post(url, user_obj)
+      .then((data) => {
+        let div = document.createElement("div");
+        div.className = "d-flex justify-content-between gap-2";
+        let p = document.createElement("p");
+        div.setAttribute("id", data.data._id);
+        p.appendChild(
+          document.createTextNode(data.data.name +
+            " " +
+            data.data.email +
+            " " +
+            data.data.phone
+          )
+        );
+        let btn = document.createElement("button");
+        btn.className = "del_button";
+        btn.appendChild(document.createTextNode("Delete"));
+        let btn1 = document.createElement("button");
+        btn1.className = "edit_btn";
+        btn1.appendChild(document.createTextNode("Edit"));
+        div.appendChild(p);
+        div.appendChild(btn);
+        div.appendChild(btn1);
+        di.appendChild(div);
+
+
+
+      }).catch((err) => console.log(err))
   });
+//window loaded
+window.addEventListener("DOMContentLoaded", () => {
+  axios.get(url)
+    .then((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        let div = document.createElement("div");
+        div.className = "d-flex justify-content-between gap-2";
+        let p = document.createElement("p");
+        div.setAttribute("id", data.data[i]._id);
+        p.appendChild(
+          document.createTextNode(data.data[i].name +
+            " " +
+            data.data[i].email +
+            " " +
+            data.data[i].phone
+          )
+        );
+        let btn = document.createElement("button");
+        btn.className = "del_button";
+        btn.appendChild(document.createTextNode("Delete"));
+        let btn1 = document.createElement("button");
+        btn1.className = "edit_btn";
+        btn1.appendChild(document.createTextNode("Edit"));
+        div.appendChild(p);
+        div.appendChild(btn);
+        div.appendChild(btn1);
+        di.appendChild(div);
+      }
+    })
+    .catch((err) => console.log(err))
+})
 
 // let keys = Object.keys(localStorage);
 // i = keys.length;
@@ -90,10 +121,10 @@ let phones = document.getElementById('phone');
 local.addEventListener("click", edit_data);
 function edit_data(e) {
   if (e.target.classList.contains("edit_btn")) {
-    let edit=e.target.parentElement.id;
-    names.value=JSON.parse(localStorage.getItem(edit)).name;
-    emails.value=JSON.parse(localStorage.getItem(edit)).email;
-    phones.value=JSON.parse(localStorage.getItem(edit)).phone;
+    let edit = e.target.parentElement.id;
+    names.value = JSON.parse(localStorage.getItem(edit)).name;
+    emails.value = JSON.parse(localStorage.getItem(edit)).email;
+    phones.value = JSON.parse(localStorage.getItem(edit)).phone;
     localStorage.removeItem(edit);
     di.removeChild(e.target.parentElement);
 
