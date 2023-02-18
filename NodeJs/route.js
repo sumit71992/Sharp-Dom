@@ -62,6 +62,8 @@ const requestHandler = (req,res) =>{
     res.write('</html>');
     res.end();
 }
+//module.exports = requesHandler;
+//module.routes = requestHandler;
 module.exports ={
     routes:requestHandler,
 };
