@@ -1,0 +1,13 @@
+.header{
+    background-color: rgb(45, 82, 82);
+    padding: 0.4rem;
+}
+.nav_lists{
+    display: flex;
+    list-style-type: none;
+    gap: 3rem;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
