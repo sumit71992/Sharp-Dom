@@ -9,6 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/admin',adminRoutes);
+
 app.use(shopRoutes);
 // 404 error page
 app.use((req,res,next)=>{
