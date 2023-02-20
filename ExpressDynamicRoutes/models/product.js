@@ -18,16 +18,16 @@ const getProductsFromFile = cb => {
 };
 
 module.exports = class Product {
-  constructor(id, title, imageUrl, description, price) {
-    this.id = id;
+  constructor(title, imageUrl, description, price, id) {
     this.title = title;
     this.imageUrl = imageUrl;
     this.description = description;
     this.price = price;
+    this.id = id;
   }
 
   save() {
-
+console.log("id"+this.id,this.title,this.imageUrl,this.description,this.price);
     getProductsFromFile(products => {
       if (this.id) {
         const existingProductIndex = products.findIndex(prod => prod.id === this.id);
