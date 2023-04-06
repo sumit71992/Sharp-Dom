@@ -67,7 +67,8 @@ exports.postCart = (req, res, next) => {
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const pid = req.body.productId;
-  req.user
+  console.log(pid)
+  return req.user
     .deleteItemFromCart(pid)
     .then(() => {
       console.log("cart item deleted");
